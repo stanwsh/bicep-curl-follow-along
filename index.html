@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bicep Curl Imaging Follow-Along</title>
+<style>
+:root{--bg:#eef3f7;--fg:#14202b;--mut:#62717f;--card:#fff;--line:#d5dde5;--hold:#178653;--move:#326fd1;--down:#6754c8;--rest:#607080;--ready:#a56b00;--accent:#ec6b2d;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1218;--fg:#f1f5f8;--mut:#9ba9b5;--card:#171e26;--line:#303b47;--hold:#229d65;--move:#4385e5;--down:#806ee1;--rest:#586a7a;--ready:#a87108;--accent:#f17b43;color-scheme:dark}}
+*{box-sizing:border-box}[hidden]{display:none!important}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-family:Arial,Helvetica,sans-serif}main{max-width:1120px;margin:auto;padding:58px 16px 16px}h1{font-size:1.55rem;margin:0 0 5px}h2{margin:0 0 8px}p{color:var(--mut);line-height:1.4;margin:5px 0 12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;margin:14px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}.preset-card{border-left:6px solid var(--accent)}label{display:block;color:var(--mut);font-size:.86rem}input,select{width:100%;padding:9px;font-size:1rem;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:7px}button{padding:10px 16px;font-size:1rem;font-weight:700;border:0;border-radius:8px;background:var(--move);color:#fff;cursor:pointer;margin:4px 4px 0 0}button.secondary{background:var(--rest)}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.mut{color:var(--mut)}
+#summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px;margin-top:10px}.summary-load{padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);font-weight:700}.prepare-layout,.motion-layout{display:grid;grid-template-columns:minmax(250px,1fr) minmax(190px,300px);gap:18px;align-items:center}.instructions{font-size:1.05rem}.instructions li{margin:9px 0;line-height:1.35}.visual-card{position:relative;display:flex;justify-content:center;align-items:center;min-height:420px;background:radial-gradient(circle at 50% 42%,rgba(50,111,209,.13),transparent 60%);border:1px solid var(--line);border-radius:16px;overflow:hidden}.figure{height:min(58vh,570px);aspect-ratio:3/7;background-repeat:no-repeat;background-size:700% 100%;background-position:0 50%;filter:drop-shadow(0 8px 10px rgba(0,0,0,.18))}.figure.resting{aspect-ratio:1/1;background-size:contain;background-position:center}.badge{position:absolute;top:12px;right:12px;z-index:2;background:var(--accent);color:#fff;border-radius:999px;padding:8px 13px;font-size:1.15rem;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,.18)}#prepCue{text-align:center;font-weight:800;color:var(--move);font-size:1.15rem;margin-top:8px}
+#top{display:flex;justify-content:space-between;gap:10px;font-size:1.05rem;margin-bottom:7px}.bar{position:relative;height:18px;background:var(--line);border-radius:9px;overflow:hidden}.fill{height:100%;width:0;background:var(--hold)}.tick{position:absolute;top:0;bottom:0;width:2px;background:var(--bg)}#blockname{text-align:center;font-weight:800;font-size:1.1rem;margin:10px 0 6px}#panel{border-radius:15px;color:#fff;text-align:center;padding:10px;margin:10px 0}#panel.ready{background:var(--ready)}#panel.baseline,#panel.rest{background:var(--rest)}#panel.hold{background:var(--hold)}#panel.up{background:var(--move)}#panel.down{background:var(--down)}#phase{font-size:clamp(1.25rem,4vh,2.3rem);font-weight:800;letter-spacing:.05em}#count{font-size:clamp(3.5rem,16vh,9rem);font-weight:800;line-height:.95}#action{text-align:center;font-size:clamp(1.35rem,4vh,2.45rem);font-weight:800}#detail{text-align:center;color:var(--mut);font-size:1.05rem;margin:4px 0 10px}#angle{text-align:center;font-weight:800;font-size:1.2rem;color:var(--move);margin-top:8px}.progress-label{display:flex;justify-content:space-between;color:var(--mut);font-size:.85rem;margin:6px 0 3px}#next{font-size:clamp(1rem,2.7vh,1.45rem);text-align:center;margin:12px 0;padding:11px;background:var(--card);border:1px solid var(--line);border-radius:10px}.controls{text-align:center}.small-note{text-align:center;color:var(--mut);font-size:.82rem;margin-top:6px}
+#liveClock{position:fixed;z-index:50;top:max(8px,env(safe-area-inset-top,0px));right:8px;padding:8px 11px;border:1px solid var(--line);border-radius:9px;background:color-mix(in srgb,var(--card) 92%,transparent);box-shadow:0 3px 12px rgba(0,0,0,.12);font-size:.78rem;font-weight:700;text-align:right;max-width:calc(100vw - 16px)}.data-tools{margin:12px 0}.data-tools strong{display:block;margin-bottom:3px}.data-status,#sessionStarted{color:var(--mut);font-size:.85rem;margin:3px 0 6px}
+@media(max-width:700px){main{padding:58px 10px 10px}.prepare-layout,.motion-layout{grid-template-columns:1fr}.visual-card{min-height:370px}.figure{height:min(52vh,470px)}#count{font-size:clamp(3rem,13vh,7rem)}.motion-layout .card:first-child{order:2}.motion-layout .visual-card{order:1}#liveClock{font-size:.7rem}}
+@media(prefers-reduced-motion:reduce){.figure{will-change:auto}}
+</style>
+</head>
+<body><div id="liveClock" role="timer" aria-label="Current local date and time"></div><main>
+<section id="setup">
+<h1>Bicep curl imaging: follow-along</h1>
+<p>Choose a session, review the timing, then follow the seated animation. The character’s body and upper arm stay fixed; only the forearm curls.</p>
+<div class="card preset-card">
+<label>Session preset<select id="preset" onchange="presetChanged()"><option value="all">Preset 1 · All Loads — Single Session</option><option value="s1">Preset 2 · Session 1 — Unloaded + 3 Loads</option><option value="s2">Preset 3 · Session 2 — Unloaded + 2 Loads</option></select></label>
+<div id="summary"></div>
+</div>
+<div class="grid">
+<div><label>Baseline rest (s)<input id="baseline" type="number" min="1" value="10"></label></div>
+<div><label>90° hold (s)<input id="hold" type="number" min="1" value="5"></label></div>
+<div><label>Slow curl each direction (s)<input id="slow" type="number" min="1" value="3"></label></div>
+<div><label>Fast curl each direction (s)<input id="fast" type="number" min="0.5" step="0.5" value="1"></label></div>
+<div><label>Repetitions per speed<input id="reps" type="number" min="1" value="5"></label></div>
+<div><label>Supported rest after slow (60–120 s)<input id="shortRest" type="number" min="60" max="120" value="90"></label></div>
+<div><label>Supported rest after fast (120–180 s)<input id="longRest" type="number" min="120" max="180" value="150"></label></div>
+<div><label>Get-ready countdown (s)<input id="ready" type="number" min="0" value="5"></label></div>
+<div><label>Start timed session from<select id="from"></select></label></div>
+</div>
+<label style="display:inline"><input id="mute" type="checkbox" style="width:auto"> Mute sound</label><br>
+<div class="card data-tools"><strong>Saved session data</strong><div id="dataStatus" class="data-status"></div><button class="secondary" onclick="exportSessions('csv',false)">Latest CSV</button><button class="secondary" onclick="exportSessions('json',false)">Latest JSON</button><button class="secondary" onclick="exportSessions('csv',true)">All CSV</button><button class="secondary" onclick="exportSessions('json',true)">All JSON</button></div>
+<button onclick="openPreparation()">Review preparation</button>
+<p class="small-note">Keys while running: Space = pause, Right/Left = next load / restart load, F = fullscreen.</p>
+</section>
+
+<section id="prepare" hidden>
+<div class="prepare-layout">
+<div class="card instructions">
+<h2>Preparation</h2>
+<ol>
+<li>Sit upright with the working upper arm stationary beside the torso.</li>
+<li>Keep the forearm supinated (palm up) and unsupported during holds and curls.</li>
+<li>Begin at 90° elbow flexion and curl toward approximately 135°–145°.</li>
+<li>Practice the slow movement, then the fast movement shown on screen.</li>
+<li>During supported relaxation, place the forearm on the thigh or chair support and release the dumbbell.</li>
+</ol>
+<p><strong>Selected session:</strong> <span id="prepPreset"></span></p>
+<button onclick="beginSession()">Begin timed session</button><button class="secondary" onclick="backToSetup()">Back</button>
+</div>
+<div>
+<div class="visual-card"><span class="badge">Practice · 0 lb</span><div id="prepFigure" class="figure" aria-label="Seated empty-hand curl practice animation"></div></div>
+<div id="prepCue">Slow curl up · 3 seconds</div>
+</div>
+</div>
+</section>
+
+<section id="run" hidden>
+<div id="top"><span id="elapsed"></span><span id="remaining"></span></div>
+<div id="sessionStarted"></div>
+<div class="bar" id="overall"><div class="fill" id="overallFill"></div></div>
+<div id="blockname"></div>
+<div id="panel" class="ready"><div id="phase"></div><div id="count"></div></div>
+<div id="action"></div><div id="detail"></div>
+<div class="motion-layout">
+<div class="card">
+<div class="progress-label"><span>Current load</span><span id="blockPct"></span></div>
+<div class="bar"><div class="fill" id="blockFill"></div></div>
+<div id="angle"></div>
+<div id="next"></div>
+<div class="controls"><button id="pauseBtn" onclick="togglePause()">Pause</button><button class="secondary" onclick="jumpLoad(-1)">Restart load</button><button class="secondary" onclick="jumpLoad(1)">Skip load</button><button class="secondary" onclick="fullscreen()">Fullscreen</button><button class="secondary" onclick="exportSessions('csv',false)">Export CSV</button><button class="secondary" onclick="exportSessions('json',false)">Export JSON</button><button class="secondary" onclick="stopSession()">Stop</button></div>
+</div>
+<div class="visual-card"><span class="badge" id="loadBadge"></span><div id="figure" class="figure" role="img" aria-label="Seated bicep curl animation"></div></div>
+</div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const PRESETS={all:{name:'Preset 1 · All Loads — Single Session',loads:[0,5,8,10,12,15]},s1:{name:'Preset 2 · Session 1 — Unloaded + 3 Loads',loads:[0,5,10,15]},s2:{name:'Preset 3 · Session 2 — Unloaded + 2 Loads',loads:[0,8,12]}};
+let cfg,phases=[],blocks=[],total=0,t=0,idx=0,active=false,running=false,last=0,lastPhase=-99,lastTick=99,audio=null,prepActive=false,currentBlock=null,readyLeft=0,startBlockIndex=0;
+const APP_ID='bicep-curl-follow-along',STORE_KEY='bicep-curl-follow-along-sessions-v1',SCHEMA_VERSION='1.0';
+let sessionRecord=null;
+const uid=()=>globalThis.crypto&&crypto.randomUUID?crypto.randomUUID():'session-'+Date.now()+'-'+Math.random().toString(36).slice(2,9);
+const localTime=ms=>new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'medium'}).format(new Date(ms));
+function updateClock(){const now=new Date(),zone=Intl.DateTimeFormat().resolvedOptions().timeZone||'Local';$('liveClock').textContent=localTime(now.getTime())+' · '+zone}
+function loadHistory(){try{return JSON.parse(localStorage.getItem(STORE_KEY)||'[]')}catch(e){return[]}}
+function persistSession(){if(!sessionRecord)return;try{let h=loadHistory().filter(s=>s.session_id!==sessionRecord.session_id);h.unshift(sessionRecord);localStorage.setItem(STORE_KEY,JSON.stringify(h.slice(0,50)));updateDataStatus()}catch(e){}}
+function updateDataStatus(){const h=loadHistory();if(!$('dataStatus'))return;$('dataStatus').textContent=h.length?`${h.length} saved session${h.length===1?'':'s'} · Latest started ${localTime(h[0].started_at_unix_ms)}`:'No saved sessions yet'}
+function startSessionRecord(config){const now=Date.now(),zone=Intl.DateTimeFormat().resolvedOptions().timeZone||'';sessionRecord={schema_version:SCHEMA_VERSION,app:APP_ID,session_id:uid(),status:'running',started_at_utc:new Date(now).toISOString(),started_at_unix_ms:now,started_at_local:new Date(now).toString(),timezone:zone,ended_at_utc:null,configuration:config,events:[]};$('sessionStarted').textContent=`Started ${localTime(now)} · ${zone}`;logEvent('session_start',{detail:'Timed session started',protocol_time_s:t});persistSession()}
+function logEvent(event_type,data={}){if(!sessionRecord)return;const now=Date.now();sessionRecord.events.push({event_index:sessionRecord.events.length,event_type,event_onset_utc:new Date(now).toISOString(),event_onset_unix_ms:now,onset_from_session_ms:now-sessionRecord.started_at_unix_ms,protocol_time_s:data.protocol_time_s??t,planned_duration_s:data.planned_duration_s??'',block_index:data.block_index??'',block_label:data.block_label??'',phase:data.phase??'',action:data.action??'',load_lb:data.load_lb??'',position:data.position??'',repetition:data.repetition??'',speed:data.speed??'',direction:data.direction??'',control:data.control??'',detail:data.detail??''});persistSession()}
+function logPhase(cur,key){logEvent('phase_onset',{protocol_time_s:cur.kind==='ready'?t:cur.t0,planned_duration_s:cur.dur,block_index:cur.block.i,block_label:cur.block.name,phase:cur.kind,action:cur.label||labelFor(cur),load_lb:cur.load??'',repetition:cur.rep??'',speed:cur.speed||'',direction:cur.kind==='up'?'up':cur.kind==='down'?'down':'',detail:key<0?'Get-ready countdown':cur.restType||''})}
+function finalizeSession(status){if(!sessionRecord||sessionRecord.status!=='running')return;logEvent('session_end',{detail:status});sessionRecord.status=status;sessionRecord.ended_at_utc=new Date().toISOString();persistSession()}
+function csvCell(v){const s=v==null?'':String(v);return/[",\n\r]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
+function csvRows(sessions){const cols=['schema_version','app','session_id','session_status','session_started_at_utc','session_started_unix_ms','session_ended_at_utc','preset','start_from','configuration_json','event_index','event_type','event_onset_utc','event_onset_unix_ms','onset_from_session_ms','protocol_time_s','planned_duration_s','block_index','block_label','phase','action','load_lb','position','repetition','speed','direction','control','detail'];const rows=[cols];sessions.forEach(s=>s.events.forEach(e=>rows.push(cols.map(c=>({schema_version:s.schema_version,app:s.app,session_id:s.session_id,session_status:s.status,session_started_at_utc:s.started_at_utc,session_started_unix_ms:s.started_at_unix_ms,session_ended_at_utc:s.ended_at_utc||'',preset:s.configuration?.preset||'',start_from:s.configuration?.start_from??'',configuration_json:JSON.stringify(s.configuration||{}),...e})[c]??''))));return rows.map(r=>r.map(csvCell).join(',')).join('\r\n')}
+function downloadData(text,type,name){const blob=new Blob([text],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function exportSessions(format,all){const history=loadHistory(),sessions=all?history:(sessionRecord?[sessionRecord]:history.slice(0,1));if(!sessions.length){alert('No saved session data yet.');return}const stamp=new Date().toISOString().replace(/[:.]/g,'-'),scope=all?'all-sessions':'latest-session';if(format==='csv')downloadData(csvRows(sessions),'text/csv;charset=utf-8',`bicep-curl-${scope}-${stamp}.csv`);else downloadData(JSON.stringify({schema_version:SCHEMA_VERSION,app:APP_ID,exported_at_utc:new Date().toISOString(),sessions},null,2),'application/json',`bicep-curl-${scope}-${stamp}.json`)}
+const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
+const fmt=s=>Math.floor(Math.max(0,s)/60)+':'+String(Math.floor(Math.max(0,s)%60)).padStart(2,'0');
+function value(id,min,max){const n=+$(id).value||0;return max==null?Math.max(min,n):clamp(n,min,max)}
+function readConfig(){return{preset:$('preset').value,baseline:value('baseline',1),hold:value('hold',1),slow:value('slow',.5),fast:value('fast',.25),reps:Math.max(1,Math.floor(value('reps',1))),shortRest:value('shortRest',60,120),longRest:value('longRest',120,180),ready:value('ready',0)}}
+function presetChanged(){const p=PRESETS[$('preset').value];$('summary').innerHTML=p.loads.map(w=>`<div class="summary-load">${w} lb</div>`).join('');$('from').innerHTML=[`<option value="0">Initial resting baseline</option>`,...p.loads.map((w,i)=>`<option value="${i+1}">${w} lb curls</option>`),`<option value="${p.loads.length+1}">Final resting baseline</option>`].join('')}
+function addPhase(kind,dur,data={}){const p={i:phases.length,kind,dur,t0:total,...data};phases.push(p);total+=dur;return p}
+function buildPlan(){cfg=readConfig();phases=[];blocks=[];total=0;const loads=PRESETS[cfg.preset].loads;
+ const beginBlock=(name,load)=>{const b={i:blocks.length,name,load,start:total,first:phases.length,dur:0};blocks.push(b);return b};
+ let b=beginBlock('Initial resting baseline',null);addPhase('baseline',cfg.baseline,{block:b,label:'Resting baseline'});b.dur=total-b.start;
+ loads.forEach(load=>{b=beginBlock(`${load} lb curls`,load);addPhase('hold',cfg.hold,{block:b,load,speed:'slow',label:'Hold at 90°'});for(let r=1;r<=cfg.reps;r++){addPhase('up',cfg.slow,{block:b,load,speed:'slow',rep:r,label:'Slow curl up'});addPhase('down',cfg.slow,{block:b,load,speed:'slow',rep:r,label:'Slow return to 90°'})}addPhase('rest',cfg.shortRest,{block:b,load,restType:'short',label:'Supported relaxation'});addPhase('hold',cfg.hold,{block:b,load,speed:'fast',label:'Hold at 90°'});for(let r=1;r<=cfg.reps;r++){addPhase('up',cfg.fast,{block:b,load,speed:'fast',rep:r,label:'Fast curl up'});addPhase('down',cfg.fast,{block:b,load,speed:'fast',rep:r,label:'Fast return to 90°'})}addPhase('rest',cfg.longRest,{block:b,load,restType:'long',label:'Supported relaxation'});b.dur=total-b.start});
+ b=beginBlock('Final resting baseline',null);addPhase('baseline',cfg.baseline,{block:b,label:'Final resting baseline'});b.dur=total-b.start;
+}
+function preload(){['assets/curl-empty.png','assets/curl-dumbbell.png','assets/supported-rest.png'].forEach(src=>{const i=new Image();i.src=src})}
+function setSprite(el,frame,loaded){el.className='figure';el.style.backgroundImage=`url('${loaded?'assets/curl-dumbbell.png':'assets/curl-empty.png'}')`;el.style.backgroundPosition=(frame*(100/6))+'% 50%'}
+function setRest(el){el.className='figure resting';el.style.backgroundImage="url('assets/supported-rest.png')";el.style.backgroundPosition='center'}
+function prepLoop(){if(!prepActive)return;const s=(performance.now()/1000)%10;let frame=0,cue='';if(s<3){frame=Math.min(6,Math.floor(s/3*7));cue='Slow curl up · 3 seconds'}else if(s<6){frame=6-Math.min(6,Math.floor((s-3)/3*7));cue='Slow return · 3 seconds'}else if(s<7){frame=0;cue='Hold at 90°'}else if(s<8){frame=Math.min(6,Math.floor((s-7)*7));cue='Fast curl up · 1 second'}else if(s<9){frame=6-Math.min(6,Math.floor((s-8)*7));cue='Fast return · 1 second'}else{frame=0;cue='Ready at 90°'}setSprite($('prepFigure'),frame,false);$('prepCue').textContent=cue;requestAnimationFrame(prepLoop)}
+function openPreparation(){cfg=readConfig();buildPlan();$('prepPreset').textContent=PRESETS[cfg.preset].name;$('setup').hidden=true;$('prepare').hidden=false;prepActive=true;prepLoop()}
+function backToSetup(){prepActive=false;$('prepare').hidden=true;$('setup').hidden=false}
+function beginSession(){prepActive=false;buildPlan();audio=audio||new(window.AudioContext||window.webkitAudioContext)();audio.resume();startBlockIndex=clamp(+$('from').value||0,0,blocks.length-1);t=blocks[startBlockIndex].start;readyLeft=cfg.ready;idx=blocks[startBlockIndex].first;currentBlock=null;lastPhase=-99;lastTick=99;active=true;running=true;last=performance.now();startSessionRecord({preset:cfg.preset,preset_name:PRESETS[cfg.preset].name,loads_lb:PRESETS[cfg.preset].loads,start_from:startBlockIndex,settings:{...cfg}});$('prepare').hidden=true;$('run').hidden=false;$('pauseBtn').textContent='Pause';drawOverall();requestAnimationFrame(frame)}
+function drawOverall(){const bar=$('overall');bar.querySelectorAll('.tick').forEach(e=>e.remove());blocks.forEach(b=>{const d=document.createElement('i');d.className='tick';d.style.left=(b.start/total*100)+'%';bar.appendChild(d)})}
+function beep(freq,d=.15){if(!audio||$('mute').checked)return;const o=audio.createOscillator(),g=audio.createGain();o.frequency.value=freq;g.gain.value=.22;o.connect(g);g.connect(audio.destination);o.start();g.gain.setTargetAtTime(0,audio.currentTime+d*.65,.02);o.stop(audio.currentTime+d)}
+function phaseAtTime(){if(readyLeft>0){const target=phases[blocks[startBlockIndex].first];return{cur:{kind:'ready',dur:cfg.ready,t0:t,block:target.block,load:target.load,label:'Get ready'},rem:readyLeft,key:-1,next:target}}while(idx<phases.length-1&&t>=phases[idx+1].t0)idx++;while(idx>0&&t<phases[idx].t0)idx--;const cur=phases[idx];return{cur,rem:cur.t0+cur.dur-t,key:idx,next:phases[idx+1]}}
+function frame(){if(!active)return;const now=performance.now(),dt=(now-last)/1000;if(running){if(readyLeft>0)readyLeft=Math.max(0,readyLeft-dt);else t+=dt}last=now;if(t>=total){finish();return}const state=phaseAtTime();render(state);requestAnimationFrame(frame)}
+function frameFor(cur,rem){if(cur.kind==='hold'||cur.kind==='ready')return 0;const elapsed=Math.max(0,cur.dur-rem),p=clamp(elapsed/Math.max(.01,cur.dur),0,1),step=Math.min(6,Math.floor(p*7));return cur.kind==='up'?step:cur.kind==='down'?6-step:0}
+function labelFor(cur){return{ready:'GET READY',baseline:'RESTING BASELINE',hold:'HOLD 90°',up:cur.speed==='slow'?'SLOW CURL UP':'FAST CURL UP',down:cur.speed==='slow'?'SLOW RETURN':'FAST RETURN',rest:'SUPPORTED RELAXATION'}[cur.kind]}
+function describe(p){if(!p)return'Session complete';if(p.kind==='baseline')return p.label;if(p.kind==='rest')return`${p.label} · ${p.dur}s`;if(p.kind==='hold')return`${p.load} lb · hold at 90° for ${p.dur}s`;return`${p.load} lb · ${p.label} · rep ${p.rep}/${cfg.reps}`}
+function render({cur,rem,key,next}){const b=cur.block;if(currentBlock!==b){currentBlock=b;$('blockname').textContent=b.name}const isRest=cur.kind==='rest'||cur.kind==='baseline';if(isRest)setRest($('figure'));else setSprite($('figure'),frameFor(cur,rem),(cur.load||0)>0);
+ $('panel').className=cur.kind;$('phase').textContent=labelFor(cur)+(running?'':' · PAUSED');$('count').textContent=Math.ceil(rem);$('loadBadge').textContent=cur.load==null?'REST':cur.load+' lb';
+ if(cur.kind==='baseline'){$('action').textContent=cur.label;$('detail').textContent='Forearm supported · muscles relaxed';$('angle').textContent='Supported rest position'}else if(cur.kind==='rest'){$('action').textContent='Release dumbbell and relax';$('detail').textContent=cur.restType==='short'?'Recovery after slow curls':'Recovery after fast curls';$('angle').textContent='Forearm supported · muscles relaxed'}else if(cur.kind==='ready'){$('action').textContent=b.name;$('detail').textContent='Sit upright · upper arm stationary · palm up';$('angle').textContent='Prepare at 90°'}else if(cur.kind==='hold'){$('action').textContent=`${cur.load} lb · ${cur.speed==='slow'?'Slow':'Fast'} set`;$('detail').textContent='Forearm unsupported · upper arm stationary';$('angle').textContent='Hold 90°'}else{const f=frameFor(cur,rem),angle=Math.round(90+50*f/6);$('action').textContent=`${cur.load} lb · ${cur.speed==='slow'?'Slow':'Fast'} · Rep ${cur.rep} of ${cfg.reps}`;$('detail').textContent=cur.kind==='up'?'Curl toward the shoulder':'Return under control';$('angle').textContent=`${cur.kind==='up'?'90° → ~140°':'~140° → 90°'} · current ~${angle}°`}
+ $('next').textContent='Next: '+describe(next);const elapsed=Math.max(0,t);$('overallFill').style.width=(elapsed/total*100)+'%';$('elapsed').textContent='Elapsed '+fmt(elapsed);$('remaining').textContent='Remaining '+fmt(total-elapsed);const bpct=clamp((t-b.start)/Math.max(.01,b.dur),0,1);$('blockFill').style.width=(bpct*100)+'%';$('blockPct').textContent=Math.round(bpct*100)+'%';
+ if(key!==lastPhase){lastPhase=key;lastTick=99;logPhase(cur,key);if(running&&t>=0)beep(isRest?440:cur.kind==='down'?660:880,cur.kind==='hold'?.3:.15)}const c=Math.ceil(rem);if(c!==lastTick){lastTick=c;if(running&&c>=1&&c<=3&&next&&!['rest','baseline'].includes(next.kind))beep(700,.06)} }
+function togglePause(){if(!active)return;running=!running;last=performance.now();$('pauseBtn').textContent=running?'Pause':'Resume';logEvent('control',{control:running?'resume':'pause',detail:running?'Session resumed':'Session paused'})}
+function jumpLoad(d){if(!active)return;const bi=phases[idx].block?.i||0;let ni=bi+d;if(d<0&&t-blocks[bi].start>2)ni=bi;ni=clamp(ni,0,blocks.length-1);logEvent('control',{control:d<0?'restart_load':'skip_load',block_index:bi,block_label:blocks[bi].name,load_lb:blocks[bi].load??'',detail:`Jump to ${blocks[ni].name}`});t=blocks[ni].start;idx=blocks[ni].first;readyLeft=0;startBlockIndex=ni;currentBlock=null;lastPhase=-99}
+function fullscreen(){const d=document.documentElement;document.fullscreenElement?document.exitFullscreen():d.requestFullscreen&&d.requestFullscreen()}
+function stopSession(){finalizeSession('stopped');active=false;running=false;$('run').hidden=true;$('setup').hidden=false;updateDataStatus()}
+function finish(){finalizeSession('completed');active=false;running=false;$('panel').className='hold';$('phase').textContent='SESSION COMPLETE';$('count').textContent='✓';$('action').textContent='Finished';$('detail').textContent='Session complete';$('overallFill').style.width='100%';$('next').textContent='All selected loads are complete.';setRest($('figure'));beep(880,.2);setTimeout(()=>beep(880,.35),300)}
+document.addEventListener('keydown',e=>{if(!active)return;if(e.code==='Space'){e.preventDefault();togglePause()}else if(e.key==='ArrowRight')jumpLoad(1);else if(e.key==='ArrowLeft')jumpLoad(-1);else if(e.key==='f'||e.key==='F')fullscreen()});
+preload();presetChanged();updateClock();setInterval(updateClock,1000);updateDataStatus();
+</script>
+</body></html>
